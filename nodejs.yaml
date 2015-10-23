@@ -1,24 +1,21 @@
 Name: nodejs
 Summary: Evented I/O for V8 JavaScript
-Version: 0.10.2
+Version: v4.2.1
 Release: 1
 Group: Development/Languages
 License: MIT
 URL: http://www.nodejs.org
 Sources:
-  - '%{name}.tar.gz'
+  - '%{name}-%{version}.tar.gz'
 Description: |
   Provides an easy way to build scalable network programs
   http://nodejs.org
-#Requires:
-#  - v8 >= 3.7
 PkgBR:
   - curl
   - gcc-c++
   - procps
   - pkgconfig
   - python
-#  - v8-devel >= 3.7
 PkgConfigBR:
   - openssl
   - zlib
@@ -27,14 +24,15 @@ Provides:
 Configure: none
 Builder: make
 Files:
-  - '%{_bindir}/node'
-  - '%{_mandir}/*/*'
-  - '%{_libdir}/dtrace'
-  - '%{_datadir}/node'
-  - '%doc AUTHORS LICENSE'
-  - '%{_libdir}/node_modules'
-  - '%exclude %{_libdir}/node_modules/npm/.npmignore'
+  - '%attr(755,root,root) %{_bindir}/node'
   - '%attr(755,root,root) %{_bindir}/npm'
+  - '%{_mandir}/*/*'
+  - '%{_datadir}/systemtap/tapset/node.stp'
+  - '%{_datadir}/node'
+  - '%{_libdir}/node_modules'
+  - '%{_includedir}/node'
+  - '%doc AUTHORS LICENSE'
+  - '%exclude %{_libdir}/node_modules/npm/.npmignore'
   - '%exclude %{_libdir}/node_modules/npm/scripts/clean-old.sh'
   - '%exclude %{_libdir}/node_modules/npm/scripts/install.sh'
   - '%attr(755,root,root) %{_libdir}/node_modules/npm/scripts/clean-old.sh'
